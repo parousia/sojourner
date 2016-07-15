@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.main_activity_tabLayout);
 
         // Create PagerAdapter
-        mPagerAdapter = new TabPagerAdapter(getSupportFragmentManager(), mTabLayout, this);
+        mPagerAdapter = new TabPagerAdapter(getSupportFragmentManager(), mTabLayout);
 
         // Find ViewPager
         mViewPager = (ViewPager) findViewById(R.id.container_viewPager);
@@ -32,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up TabLayout
         mTabLayout.setupWithViewPager(mViewPager);
+        mPagerAdapter.setTabIcons();
     }
 }

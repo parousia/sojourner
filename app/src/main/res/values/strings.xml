@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sojourner</string>
+    <string name="challenge_cardview">Challenge</string>
+    <string name="scene_cardview">Journey</string>
 </resources>
