@@ -15,12 +15,10 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     private static final int TAB_POSITION_TIMELINE = 1;
     private static final int TAB_POSITION_PRAYER = 2;
 
-    private Context mContext;
     private TabLayout mTabLayout;
 
-    public TabPagerAdapter(FragmentManager manager, TabLayout tabLayout, Context context) {
+    public TabPagerAdapter(FragmentManager manager, TabLayout tabLayout) {
         super(manager);
-        mContext = context;
         mTabLayout = tabLayout;
     }
 
@@ -45,5 +43,11 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 3;
+    }
+
+    public void setTabIcons() {
+        mTabLayout.getTabAt(TAB_POSITION_JOURNEY).setIcon(R.drawable.ic_journey);
+        mTabLayout.getTabAt(TAB_POSITION_TIMELINE).setIcon(R.drawable.ic_timeline);
+        mTabLayout.getTabAt(TAB_POSITION_PRAYER).setIcon(R.drawable.ic_prayer_guide);
     }
 }

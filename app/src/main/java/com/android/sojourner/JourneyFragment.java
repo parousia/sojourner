@@ -27,10 +27,10 @@ public class JourneyFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    /*@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_journey, container, false);
 
         return v;
-    }*/
+    }
 }
