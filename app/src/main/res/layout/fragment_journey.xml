@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/challenge_title_textView"
                 android:layout_margin="16dp"
+                android:layout_marginRight="-8dp"
                 android:text="Test Text to see where the challenge goes"/>
 
             <CheckBox
@@ -47,7 +48,7 @@
         android:id="@+id/journey_scene_cardview"
         style="@style/CustomCardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp">
 
         <FrameLayout
