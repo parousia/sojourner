@@ -2,4 +2,7 @@
     <string name="app_name">Sojourner</string>
     <string name="challenge_cardview">Challenge</string>
     <string name="scene_cardview">Journey</string>
+    <string name="checkbox_done">Done</string>
+    <string name="journey_scene_title">Story</string>
+    <string name="challenge_title">Challenge</string>
 </resources>
