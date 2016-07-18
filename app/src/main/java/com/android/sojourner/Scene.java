@@ -5,12 +5,13 @@ package com.android.sojourner;
  */
 
 public class Scene {
+    private int mSceneNumber;
     private Slide[] mSlides;
     private String mSceneName;
     private Challenge mChallenge;
     private PrayerTip mPrayerTip;
 
-    public Scene() {
+    public Scene(String assetPath) {
 
     }
 }
