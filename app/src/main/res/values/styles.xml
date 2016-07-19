@@ -19,4 +19,10 @@
         <item name="color">@color/white</item>
     </style>
 
+    <style name="CustomCardView" parent="CardView">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+
 </resources>

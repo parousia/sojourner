@@ -11,7 +11,7 @@ public class Scene {
     private Challenge mChallenge;
     private PrayerTip mPrayerTip;
 
-    public Scene(String assetPath) {
+    public Scene(String scenePath) {
 
     }
 }
