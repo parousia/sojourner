@@ -25,9 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int TYPE_HEADER = 0;
-    public static final int TYPE_MENU = 1;
-
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private TabPagerAdapter mPagerAdapter;
@@ -99,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDrawerRecyclerView.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new DrawerAdapter.OnItemSelectListener() {
+            @Override
+            public void onItemSelected(View v, int position) {
+                //clicking items does stuff
+            }
+        });
+
         // Find TabLayout
         mTabLayout = (TabLayout) findViewById(R.id.main_activity_tabLayout);
 
@@ -116,7 +120,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class DrawerAdapter extends RecyclerView.Adapter<DrawerViewHolder>{
+        public static final int TYPE_HEADER = 0;
+        public static final int TYPE_MENU = 1;
+
         ArrayList<DrawerItem> mItemList;
+
+        private OnItemSelectListener mListener;
 
         public DrawerAdapter(ArrayList<DrawerItem> itemList) {
             mItemList = itemList;
@@ -129,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header_drawer, parent, false);
             }
             else {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_drawer, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
             }
             DrawerViewHolder holder = new DrawerViewHolder(view, viewType);
             return holder;
@@ -159,6 +168,14 @@ public class MainActivity extends AppCompatActivity {
             }
             return TYPE_MENU;
         }
+
+        public void setOnItemClickListener(OnItemSelectListener mListener) {
+            this.mListener = mListener;
+        }
+
+        public interface OnItemSelectListener {
+            public void onItemSelected(View v, int position);
+        }
     }
 
     private class DrawerViewHolder extends RecyclerView.ViewHolder {
@@ -168,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         public DrawerViewHolder(View itemView, int viewType) {
             super(itemView);
+
             if (viewType == 0) {
                 mHeaderText = (TextView) itemView.findViewById(R.id.headerText);
             }
@@ -175,6 +193,12 @@ public class MainActivity extends AppCompatActivity {
                 mItemName = (TextView) itemView.findViewById(R.id.title);
                 mIconImage = (ImageView) itemView.findViewById(R.id.icon);
             }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemSelected(v, getAdapterPosition());
+                }
+            });
         }
     }
 }
