@@ -10,14 +10,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Joseph on 7/19/16.
+ * Created by jlian on 7/19/2016.
  */
-
-public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerViewHolder> {
+public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerViewHolder>{
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_MENU = 1;
 
     ArrayList<DrawerItem> mItemList;
+
     private OnItemSelectListener mListener;
 
     public DrawerAdapter(ArrayList<DrawerItem> itemList) {
@@ -29,7 +29,8 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         View view;
         if (viewType == TYPE_HEADER) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header_drawer, parent, false);
-        } else {
+        }
+        else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
         }
         DrawerViewHolder holder = new DrawerViewHolder(view, viewType);
@@ -38,9 +39,10 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
 
     @Override
     public void onBindViewHolder(DrawerViewHolder holder, int position) {
-        if (position == 0) {
+        if(position == 0) {
             holder.mHeaderText.setText("Sojourner Menu");
-        } else {
+        }
+        else {
             DrawerItem drawerItem = mItemList.get(position - 1);
             holder.mItemName.setText(drawerItem.getmTitle());
             holder.mIconImage.setImageResource(drawerItem.getmIcon());
@@ -60,15 +62,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         return TYPE_MENU;
     }
 
-    public void setOnItemClickListener(OnItemSelectListener mListener) {
-        this.mListener = mListener;
-    }
-
-    public interface OnItemSelectListener {
-        void onItemSelected(View v, int i);
-    }
-
-    public class DrawerViewHolder extends RecyclerView.ViewHolder {
+    protected class DrawerViewHolder extends RecyclerView.ViewHolder {
         TextView mItemName;
         TextView mHeaderText;
         ImageView mIconImage;
@@ -78,7 +72,8 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
 
             if (viewType == 0) {
                 mHeaderText = (TextView) itemView.findViewById(R.id.headerText);
-            } else {
+            }
+            else {
                 mItemName = (TextView) itemView.findViewById(R.id.title);
                 mIconImage = (ImageView) itemView.findViewById(R.id.icon);
             }
@@ -89,5 +84,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
                 }
             });
         }
+    }
+
+    public void setOnItemClickListener(OnItemSelectListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public interface OnItemSelectListener {
+        public void onItemSelected(View v, int position);
     }
 }
