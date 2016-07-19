@@ -8,6 +8,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/journey_challenge_cardview"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         style="@style/CustomCardView">
 
         <RelativeLayout
@@ -15,7 +17,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/challenge_title_textView"
+                android:id="@+id/journey_challenge_title_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -26,7 +28,7 @@
                 android:id="@+id/journey_challenge_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/challenge_title_textView"
+                android:layout_below="@id/journey_challenge_title_textView"
                 android:layout_margin="16dp"
                 android:layout_marginRight="-8dp"
                 android:text="Test Text to see where the challenge goes"/>
@@ -43,9 +45,10 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/journey_scene_cardview"
+        android:id="@+id/journey_story_cardview"
         style="@style/CustomCardView"
         android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginTop="8dp">
 
         <FrameLayout

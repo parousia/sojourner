@@ -32,9 +32,9 @@ public class Scene {
 
         // Get scene contents
         try {
-            String[] sceneContents = assets.list(scenePath);
+            String[] sceneContents = assets.list(mAssetPath);
             for (String file : sceneContents) {
-                String txt = SceneLab.getStringFromFile(file, assets);
+                String txt = SceneLab.getStringFromFile(mAssetPath + "/" + file, assets);
                 switch (file) {
                     case CHALLENGE:
                         mChallenge = txt;

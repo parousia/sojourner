@@ -37,20 +37,6 @@ public class SceneLab {
     }
 
     public List<Scene> getScenes() {
-        return loadScenes();
-
-        /*List<Scene> scenes = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Scene s = new Scene(i);
-            if (i < 4) {
-                s.setUnlocked(true);
-            }
-            scenes.add(s);
-        }
-        return scenes;*/
-    }
-
-    private List<Scene> loadScenes() {
         List<Scene> scenes = new ArrayList<>();
         try {
             String[] sceneNames = mAssetManager.list(SCENES_FOLDER);
@@ -65,6 +51,24 @@ public class SceneLab {
         return scenes;
     }
 
+    public Scene getScene(int number) {
+        try {
+            String[] scenes = mAssetManager.list(SCENES_FOLDER);
+            for (String s : scenes) {
+                // Get the scene number
+                String num = s.split("-")[0];
+                if (Integer.parseInt(num) == number) {
+                    return new Scene(s, mAssetManager);
+                }
+            }
+        } catch (IOException e) { // DO nothing
+        }
+
+        // Scene does not exist
+        Log.e(TAG, "No Scene found: " + number);
+        return null;
+    }
+
     /** Static helper methods **/
     public static String getStringFromFile(String filePath, AssetManager assetManager) {
         String str = "";
@@ -76,8 +80,8 @@ public class SceneLab {
             while ((str = in.readLine()) != null) {
                 builder.append(str);
             }
+            str = builder.toString();
             in.close();
-
         } catch (IOException e) {
             // Do nothing
         }
