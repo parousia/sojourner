@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        // Set up RecyclerView for Navigation drawer
-        mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
-
         //dummy data
         mDrawerItemList = new ArrayList<DrawerItem>();
         DrawerItem item = new DrawerItem();
@@ -91,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
         item3.setmTitle("About");
         mDrawerItemList.add(item3);
 
-        // Setting up adapter
-        DrawerAdapter adapter = new DrawerAdapter(mDrawerItemList);
+        // Set up RecyclerView for Navigation drawer
+        mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
         mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DrawerAdapter adapter = new DrawerAdapter(mDrawerItemList);
         mDrawerRecyclerView.setAdapter(adapter);
-
         adapter.setOnItemClickListener(new DrawerAdapter.OnItemSelectListener() {
             @Override
             public void onItemSelected(View v, int position) {
@@ -117,88 +114,5 @@ public class MainActivity extends AppCompatActivity {
         // Set up TabLayout
         mTabLayout.setupWithViewPager(mViewPager);
         mPagerAdapter.setTabIcons();
-    }
-
-    private class DrawerAdapter extends RecyclerView.Adapter<DrawerViewHolder>{
-        public static final int TYPE_HEADER = 0;
-        public static final int TYPE_MENU = 1;
-
-        ArrayList<DrawerItem> mItemList;
-
-        private OnItemSelectListener mListener;
-
-        public DrawerAdapter(ArrayList<DrawerItem> itemList) {
-            mItemList = itemList;
-        }
-
-        @Override
-        public DrawerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view;
-            if (viewType == TYPE_HEADER) {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header_drawer, parent, false);
-            }
-            else {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
-            }
-            DrawerViewHolder holder = new DrawerViewHolder(view, viewType);
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(DrawerViewHolder holder, int position) {
-            if(position == 0) {
-                holder.mHeaderText.setText("Sojourner Menu");
-            }
-            else {
-                DrawerItem drawerItem = mItemList.get(position - 1);
-                holder.mItemName.setText(drawerItem.getmTitle());
-                holder.mIconImage.setImageResource(drawerItem.getmIcon());
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return mItemList.size() + 1;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            if (position == 0) {
-                return TYPE_HEADER;
-            }
-            return TYPE_MENU;
-        }
-
-        public void setOnItemClickListener(OnItemSelectListener mListener) {
-            this.mListener = mListener;
-        }
-
-        public interface OnItemSelectListener {
-            public void onItemSelected(View v, int position);
-        }
-    }
-
-    private class DrawerViewHolder extends RecyclerView.ViewHolder {
-        TextView mItemName;
-        TextView mHeaderText;
-        ImageView mIconImage;
-
-        public DrawerViewHolder(View itemView, int viewType) {
-            super(itemView);
-
-            if (viewType == 0) {
-                mHeaderText = (TextView) itemView.findViewById(R.id.headerText);
-            }
-            else {
-                mItemName = (TextView) itemView.findViewById(R.id.title);
-                mIconImage = (ImageView) itemView.findViewById(R.id.icon);
-            }
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onItemSelected(v, getAdapterPosition());
-                }
-            });
-        }
     }
 }
