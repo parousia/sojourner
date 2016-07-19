@@ -20,6 +20,7 @@ public class JourneyFragment extends Fragment {
         JourneyFragment fragment = new JourneyFragment();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override

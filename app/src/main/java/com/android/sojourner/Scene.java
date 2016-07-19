@@ -5,12 +5,50 @@ package com.android.sojourner;
  */
 
 public class Scene {
-    private Slide[] mSlides;
+    private int mSceneNumber;
+    private String mSlides;
     private String mSceneName;
-    private Challenge mChallenge;
-    private PrayerTip mPrayerTip;
+    private String mChallenge;
+    private String mPrayerTips;
+    private boolean mIsUnlocked;
 
-    public Scene() {
+    public Scene(String scenePath) {
 
+    }
+
+    public Scene(int number) {
+        mSceneNumber = number;
+        mSceneName = "Scene " + number;
+        mSlides = "This is the description for scene " + number;
+        mChallenge = "This is the challenge for scene " + number;
+        mPrayerTips = "These are the prayer tips for scene " + number;
+    }
+
+    public int getSceneNumber() {
+        return mSceneNumber;
+    }
+
+    public String getSlides() {
+        return mSlides;
+    }
+
+    public String getSceneName() {
+        return mSceneName;
+    }
+
+    public String getChallenge() {
+        return mChallenge;
+    }
+
+    public String getPrayerTips() {
+        return mPrayerTips;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        mIsUnlocked = unlocked;
+    }
+
+    public boolean isUnlocked() {
+        return mIsUnlocked;
     }
 }
