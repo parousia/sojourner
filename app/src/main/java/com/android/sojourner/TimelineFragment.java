@@ -2,6 +2,7 @@ package com.android.sojourner;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,9 +26,9 @@ public class TimelineFragment extends Fragment {
     private List<Scene> mScenes;
 
     public static TimelineFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         TimelineFragment fragment = new TimelineFragment();
         fragment.setArguments(args);
         return fragment;
@@ -75,7 +76,7 @@ public class TimelineFragment extends Fragment {
         @Override
         public void onBindViewHolder(TimelineHolder holder, int position) {
             Scene scene = mScenes.get(position);
-            holder.bindViewHolder(scene);
+            holder.bindViewHolder(scene, position);
         }
 
         @Override
@@ -88,8 +89,8 @@ public class TimelineFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mSubtitleTextView;
         private CircleImageView mCircleImageView;
-        private ImageView mUpDottedLine;
-        private ImageView mDownDottedLine;
+        private View mUpDottedLine;
+        private View mDownDottedLine;
 
         public TimelineHolder(View itemView) {
             super(itemView);
@@ -97,39 +98,65 @@ public class TimelineFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.timeline_item_title_textView);
             mSubtitleTextView = (TextView) itemView.findViewById(R.id.timeline_item_subtitle_textView);
             mCircleImageView = (CircleImageView) itemView.findViewById(R.id.timeline_item_iconView);
-            mUpDottedLine = (ImageView) itemView.findViewById(R.id.timeline_item_dot_1);
-            mDownDottedLine = (ImageView) itemView.findViewById(R.id.timeline_item_dot_2);
+            mUpDottedLine = (View) itemView.findViewById(R.id.timeline_item_dot_1);
+            mDownDottedLine = (View) itemView.findViewById(R.id.timeline_item_dot_2);
         }
 
-        public void bindViewHolder(Scene scene) {
+        public void bindViewHolder(Scene scene, int position) {
             mTitleTextView.setText(scene.getSceneName());
             mSubtitleTextView.setText("Subtitle text");
+
+            // Set timeline icon view
+            int timelineResId, borderColorId;
+            int upLineColorId, downLineColorId;
             if (scene.isUnlocked()) {
-                mCircleImageView.setImageResource(R.drawable.ic_timeline_unlocked);
-                mUpDottedLine.setImageResource(android.R.color.transparent);
-                mDownDottedLine.setImageResource(android.R.color.transparent);
+                timelineResId = R.drawable.ic_timeline_unlocked;
+                borderColorId = R.color.colorPrimaryLight;
+                upLineColorId = R.color.colorPrimary;
+                downLineColorId = R.color.colorPrimary;
             } else {
-                mCircleImageView.setImageResource(R.drawable.ic_timeline_locked);
-                mUpDottedLine.setImageResource(android.R.color.transparent);
-                mDownDottedLine.setImageResource(android.R.color.transparent);
+                timelineResId = R.drawable.ic_timeline_locked;
+                borderColorId = R.color.red;
+                upLineColorId = android.R.color.transparent;
+                downLineColorId = android.R.color.transparent;
             }
+            mCircleImageView.setImageResource(timelineResId);
+            mCircleImageView.setBorderColor(ContextCompat.getColor(getActivity(), borderColorId));
+
+            // Set connecting links color
+            if (position == 0) {
+                upLineColorId = android.R.color.transparent;
+            } else if (position == 3) {
+                downLineColorId = android.R.color.transparent;
+            }
+            // Set the Views
+            mUpDottedLine.setBackgroundColor(
+                    ContextCompat.getColor(getActivity(), upLineColorId));
+            mDownDottedLine.setBackgroundColor(
+                    ContextCompat.getColor(getActivity(), downLineColorId));
         }
 
         public void showUpDottedLine(boolean isVisible) {
             if (isVisible) {
                 // Show the dotted line
+                mUpDottedLine.setBackgroundColor(
+                        ContextCompat.getColor(getActivity(), R.color.colorPrimary));
             } else {
                 // Clear the imageview
-                mUpDottedLine.setImageResource(android.R.color.transparent);
+                mUpDottedLine.setBackgroundColor(
+                        ContextCompat.getColor(getActivity(), android.R.color.transparent));
             }
         }
 
         public void showDownDottedLine(boolean isVisible) {
             if (isVisible) {
                 // Show the dotted line
+                mDownDottedLine.setBackgroundColor(
+                        ContextCompat.getColor(getActivity(), R.color.colorPrimary));
             } else {
                 // Clear the imageview
-                mDownDottedLine.setImageResource(android.R.color.transparent);
+                mDownDottedLine.setBackgroundColor(
+                        ContextCompat.getColor(getActivity(), android.R.color.transparent));
             }
         }
     }

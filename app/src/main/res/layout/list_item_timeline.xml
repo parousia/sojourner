@@ -14,9 +14,9 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
+            <View
                 android:id="@+id/timeline_item_dot_1"
-                android:layout_width="match_parent"
+                android:layout_width="1dp"
                 android:layout_height="15dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -28,10 +28,10 @@
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="2dp"/>
 
-            <ImageView
+            <View
                 android:id="@+id/timeline_item_dot_2"
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"/>
 
         </LinearLayout>

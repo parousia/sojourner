@@ -1,9 +1,6 @@
 package com.android.sojourner;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,17 +9,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
@@ -123,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public DrawerViewHolder onCreateViewHolder(ViewGroup parent, int i) {
             View view;
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_drawer, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
             DrawerViewHolder holder = new DrawerViewHolder(view);
             return holder;
         }
