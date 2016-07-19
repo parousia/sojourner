@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(View v, int position) {
                 //clicking items does stuff
+                Toast.makeText(MainActivity.this, "Selected " + position, Toast.LENGTH_SHORT).show();
             }
         });
 
