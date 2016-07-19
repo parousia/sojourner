@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Set toolbar
+        // Set up toolbar
         mToolbar = (Toolbar) findViewById(R.id.main_activity_toolbar);
         setSupportActionBar(mToolbar);
 
@@ -65,15 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mDrawerRecyclerView.setLayoutManager(mLayoutManager);
-        mDrawerRecyclerView.setAdapter(mAdapter);
-        /*mDrawerRecyclerView.setAdapter(new mAdapter<String>(this,
-                R.layout.item_list_drawer, mDrawerTitles));
-        mDrawerRecyclerView.setOnClickListener(new DrawerItem);*/
-
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        // Set up RecyclerView for Navigation drawer
+        mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
+        mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // TODO: finish setting up adapter
 
         // Find TabLayout
         mTabLayout = (TabLayout) findViewById(R.id.main_activity_tabLayout);

@@ -1,8 +1,8 @@
 package com.android.sojourner;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +19,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class TimelineFragment extends Fragment {
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+
+    private List<Scene> mScenes;
 
     public static TimelineFragment newInstance() {
         
@@ -35,13 +36,21 @@ public class TimelineFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize Scene list
+        mScenes = SceneLab.get(getActivity()).getScenes();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_timeline, container, false);
 
+        /* Set up RecyclerView */
         mRecyclerView = (RecyclerView) v.findViewById(R.id.fragment_timeline_recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new TimelineAdapter(mScenes);
+        mRecyclerView.setAdapter(mAdapter);
+
         return v;
     }
 
@@ -93,7 +102,17 @@ public class TimelineFragment extends Fragment {
         }
 
         public void bindViewHolder(Scene scene) {
-
+            mTitleTextView.setText(scene.getSceneName());
+            mSubtitleTextView.setText("Subtitle text");
+            if (scene.isUnlocked()) {
+                mCircleImageView.setImageResource(R.drawable.ic_timeline_unlocked);
+                mUpDottedLine.setImageResource(android.R.color.transparent);
+                mDownDottedLine.setImageResource(android.R.color.transparent);
+            } else {
+                mCircleImageView.setImageResource(R.drawable.ic_timeline_locked);
+                mUpDottedLine.setImageResource(android.R.color.transparent);
+                mDownDottedLine.setImageResource(android.R.color.transparent);
+            }
         }
 
         public void showUpDottedLine(boolean isVisible) {
