@@ -6,10 +6,10 @@ package com.android.sojourner;
 
 public class Scene {
     private int mSceneNumber;
-    private Slide[] mSlides;
+    private String mSlides;
     private String mSceneName;
-    private Challenge mChallenge;
-    private PrayerTip mPrayerTip;
+    private String mChallenge;
+    private String mPrayerTips;
 
     public Scene(String scenePath) {
 
