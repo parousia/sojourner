@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mDrawerRecyclerView;
     private DrawerAdapter mAdapter;
 
+    private ArrayList<DrawerItem> mDrawerItemList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +73,29 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up RecyclerView for Navigation drawer
         mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
-        mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //dummy data
+        mDrawerItemList = new ArrayList<DrawerItem>();
+        DrawerItem item = new DrawerItem();
+        item.setmIcon(R.drawable.ic_drawer_share);
+        item.setmTitle("Share");
+        mDrawerItemList.add(item);
+
+        DrawerItem item2 = new DrawerItem();
+        item2.setmIcon(R.drawable.ic_drawer_settings);
+        item2.setmTitle("Settings");
+        mDrawerItemList.add(item2);
+
+        DrawerItem item3 = new DrawerItem();
+        item3.setmIcon(R.drawable.ic_drawer_about);
+        item3.setmTitle("About");
+        mDrawerItemList.add(item3);
+
         // TODO: finish setting up adapter
+        DrawerAdapter adapter = new DrawerAdapter(mDrawerItemList);
+        mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mDrawerRecyclerView.setAdapter(adapter);
 
         // Find TabLayout
         mTabLayout = (TabLayout) findViewById(R.id.main_activity_tabLayout);

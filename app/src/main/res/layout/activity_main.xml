@@ -43,7 +43,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_activity_drawer_recyclerView"
             android:layout_width="280dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF"
             android:layout_gravity="start"/>
 
