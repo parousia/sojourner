@@ -9,9 +9,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
@@ -19,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private TabPagerAdapter mPagerAdapter;
 
     private Toolbar mToolbar;
+    private String[] mDrawerTitles;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private RecyclerView mDrawerRecyclerView;
+    private DrawerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mDrawerRecyclerView.setLayoutManager(mLayoutManager);
+        mDrawerRecyclerView.setAdapter(mAdapter);
+        /*mDrawerRecyclerView.setAdapter(new mAdapter<String>(this,
+                R.layout.item_list_drawer, mDrawerTitles));
+        mDrawerRecyclerView.setOnClickListener(new DrawerItem);*/
+
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
@@ -69,5 +89,44 @@ public class MainActivity extends AppCompatActivity {
         // Set up TabLayout
         mTabLayout.setupWithViewPager(mViewPager);
         mPagerAdapter.setTabIcons();
+    }
+
+    private class DrawerAdapter extends RecyclerView.Adapter<DrawerViewHolder>{
+        ArrayList<DrawerItem> mItemList;
+
+        public DrawerAdapter(ArrayList<DrawerItem> itemList) {
+            mItemList = itemList;
+        }
+
+        @Override
+        public DrawerViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+            View view;
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_drawer, parent, false);
+            DrawerViewHolder holder = new DrawerViewHolder(view);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(DrawerViewHolder holder, int position) {
+            DrawerItem drawerItem = mItemList.get(position);
+            holder.mItemName.setText(drawerItem.getmTitle());
+            holder.mIconImage.setImageResource(drawerItem.getmIcon());
+        }
+
+        @Override
+        public int getItemCount() {
+            return mItemList.size();
+        }
+    }
+
+    private class DrawerViewHolder extends RecyclerView.ViewHolder {
+        TextView mItemName;
+        ImageView mIconImage;
+
+        public DrawerViewHolder(View itemView) {
+            super(itemView);
+            mItemName = (TextView)itemView.findViewById(R.id.title);
+            mIconImage = (ImageView) itemView.findViewById(R.id.icon);
+        }
     }
 }
