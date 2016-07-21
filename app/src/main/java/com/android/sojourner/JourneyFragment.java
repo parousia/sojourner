@@ -15,9 +15,7 @@ import android.widget.TextView;
 public class JourneyFragment extends Fragment {
 
     public static JourneyFragment newInstance() {
-
         Bundle args = new Bundle();
-
         JourneyFragment fragment = new JourneyFragment();
         fragment.setArguments(args);
         return fragment;
