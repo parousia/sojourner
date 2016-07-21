@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        // Set up RecyclerView for Navigation drawer
-        mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
-
         //dummy data
         mDrawerItemList = new ArrayList<DrawerItem>();
         DrawerItem item = new DrawerItem();
@@ -96,15 +93,16 @@ public class MainActivity extends AppCompatActivity {
         item3.setmTitle("About");
         mDrawerItemList.add(item3);
 
-        // Setting up adapter
-        DrawerAdapter adapter = new DrawerAdapter(mDrawerItemList);
+        // Set up RecyclerView for Navigation drawer
+        mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
         mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DrawerAdapter adapter = new DrawerAdapter(mDrawerItemList);
         mDrawerRecyclerView.setAdapter(adapter);
-
         adapter.setOnItemClickListener(new DrawerAdapter.OnItemSelectListener() {
             @Override
             public void onItemSelected(View v, int position) {
                 //clicking items does stuff
+                Toast.makeText(MainActivity.this, "Selected " + position, Toast.LENGTH_SHORT).show();
             }
         });
 

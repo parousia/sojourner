@@ -29,8 +29,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         View view;
         if (viewType == TYPE_HEADER) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_header_drawer, parent, false);
-        }
-        else {
+        } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
         }
         DrawerViewHolder holder = new DrawerViewHolder(view, viewType);
