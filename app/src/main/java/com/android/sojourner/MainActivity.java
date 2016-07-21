@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private TabPagerAdapter mPagerAdapter;
 
     private Toolbar mToolbar;
-    private String[] mDrawerTitles;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView mDrawerRecyclerView;

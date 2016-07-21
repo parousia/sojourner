@@ -53,7 +53,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
 
     @Override
     public int getItemCount() {
-        return mItemList.size();
+        return mItemList.size() + 1;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
             if(position == 0) {
                 mHeaderText.setText("Sojourner Menu");
             } else {
-                DrawerItem drawerItem = mItemList.get(position);
+                DrawerItem drawerItem = mItemList.get(position - 1);
                 mItemName.setText(drawerItem.getmTitle());
                 mIconImage.setImageResource(drawerItem.getmIcon());
             }
