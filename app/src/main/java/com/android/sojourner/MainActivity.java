@@ -77,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
         //dummy data
         mDrawerItemList = new ArrayList<DrawerItem>();
         DrawerItem item = new DrawerItem();
-        item.setmIcon(R.drawable.ic_drawer_share);
-        item.setmTitle("Share");
+        item.setmIcon(R.drawable.ic_drawer_all_treks);
+        item.setmTitle("All Treks");
         mDrawerItemList.add(item);
+
+        DrawerItem item1 = new DrawerItem();
+        item1.setmIcon(R.drawable.ic_drawer_share);
+        item1.setmTitle("Share");
+        mDrawerItemList.add(item1);
 
         DrawerItem item2 = new DrawerItem();
         item2.setmIcon(R.drawable.ic_drawer_settings);
