@@ -17,11 +17,20 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
     public static final int TYPE_MENU = 1;
 
     ArrayList<DrawerItem> mItemList;
-
     private OnItemSelectListener mListener;
 
-    public DrawerAdapter(ArrayList<DrawerItem> itemList) {
-        mItemList = itemList;
+    // Interface for item clicks
+    public interface OnItemSelectListener {
+        void onItemSelected(View v, int position);
+    }
+
+    public void setOnItemClickListener(OnItemSelectListener listener) {
+        mListener = listener;
+    }
+
+    // Constructor
+    public DrawerAdapter() {
+        mItemList = makeDrawerList();
     }
 
     @Override
@@ -32,25 +41,19 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drawer, parent, false);
         }
+
         DrawerViewHolder holder = new DrawerViewHolder(view, viewType);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(DrawerViewHolder holder, int position) {
-        if(position == 0) {
-            holder.mHeaderText.setText("Sojourner Menu");
-        }
-        else {
-            DrawerItem drawerItem = mItemList.get(position - 1);
-            holder.mItemName.setText(drawerItem.getmTitle());
-            holder.mIconImage.setImageResource(drawerItem.getmIcon());
-        }
+        holder.bindViewHolder(position);
     }
 
     @Override
     public int getItemCount() {
-        return mItemList.size() + 1;
+        return mItemList.size();
     }
 
     @Override
@@ -61,7 +64,36 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         return TYPE_MENU;
     }
 
-    protected class DrawerViewHolder extends RecyclerView.ViewHolder {
+    // Initialize the drawer list
+    private ArrayList<DrawerItem> makeDrawerList() {
+        //dummy data
+        ArrayList<DrawerItem> itemList = new ArrayList<>();
+        DrawerItem item = new DrawerItem();
+        item.setmIcon(R.drawable.ic_drawer_all_treks);
+        item.setmTitle("All Treks");
+        itemList.add(item);
+
+        DrawerItem item1 = new DrawerItem();
+        item1.setmIcon(R.drawable.ic_drawer_share);
+        item1.setmTitle("Share");
+        itemList.add(item1);
+
+        DrawerItem item2 = new DrawerItem();
+        item2.setmIcon(R.drawable.ic_drawer_settings);
+        item2.setmTitle("Settings");
+        itemList.add(item2);
+
+        DrawerItem item3 = new DrawerItem();
+        item3.setmIcon(R.drawable.ic_drawer_about);
+        item3.setmTitle("About");
+        itemList.add(item3);
+
+        return itemList;
+    }
+
+    /** Private ViewHolder Class **/
+    protected class DrawerViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         TextView mItemName;
         TextView mHeaderText;
         ImageView mIconImage;
@@ -69,6 +101,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         public DrawerViewHolder(View itemView, int viewType) {
             super(itemView);
 
+            // Find the inflated views
             if (viewType == 0) {
                 mHeaderText = (TextView) itemView.findViewById(R.id.headerText);
             }
@@ -76,20 +109,24 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
                 mItemName = (TextView) itemView.findViewById(R.id.title);
                 mIconImage = (ImageView) itemView.findViewById(R.id.icon);
             }
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onItemSelected(v, getAdapterPosition());
-                }
-            });
+
+            // Set the itemClickListener
+            itemView.setOnClickListener(this);
         }
-    }
 
-    public void setOnItemClickListener(OnItemSelectListener mListener) {
-        this.mListener = mListener;
-    }
+        public void bindViewHolder(int position) {
+            if(position == 0) {
+                mHeaderText.setText("Sojourner Menu");
+            } else {
+                DrawerItem drawerItem = mItemList.get(position);
+                mItemName.setText(drawerItem.getmTitle());
+                mIconImage.setImageResource(drawerItem.getmIcon());
+            }
+        }
 
-    public interface OnItemSelectListener {
-        public void onItemSelected(View v, int position);
+        @Override
+        public void onClick(View view) {
+            mListener.onItemSelected(view, getAdapterPosition());
+        }
     }
 }
