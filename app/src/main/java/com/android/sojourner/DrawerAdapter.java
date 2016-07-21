@@ -97,12 +97,14 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         TextView mItemName;
         TextView mHeaderText;
         ImageView mIconImage;
+       // ImageView mBackgroundImage;
 
         public DrawerViewHolder(View itemView, int viewType) {
             super(itemView);
 
             // Find the inflated views
             if (viewType == 0) {
+                //mBackgroundImage = (ImageView) itemView.findViewById(R.id.background_header_drawer);
                 mHeaderText = (TextView) itemView.findViewById(R.id.headerText);
             }
             else {
@@ -116,6 +118,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
 
         public void bindViewHolder(int position) {
             if(position == 0) {
+               /* Bitmap bitmap = PictureUtils.getScaledBitmap(
+                        mBackgroundImageFile.getPath(), getActivity());
+                mBackgroundImage.setImageBitmap(bitmap);*/
                 mHeaderText.setText("Sojourner Menu");
             } else {
                 DrawerItem drawerItem = mItemList.get(position - 1);
