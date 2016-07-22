@@ -4,6 +4,8 @@ import android.content.res.AssetManager;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Joseph on 7/18/16.
@@ -12,17 +14,22 @@ import java.io.IOException;
 public class Scene {
     private static final String TAG = "Scene";
     private static final String CHALLENGE = "challenge";
-    private static final String SCENE_TEXT = "scene_text";
+    private static final String SCENE_TEXTS = "scene_texts";
     private static final String PRAYER_TIP = "prayer_tip";
 
     private String mAssetPath;
+    private List<Slide> mSlides;
     private int mSceneNumber;
-    private String mContents;
     private String mSceneName;
     private String mChallenge;
     private String mPrayerTips;
     private boolean mIsUnlocked = true;
 
+    /***
+     * Constructor for Scene from asset path
+     * @param scenePath
+     * @param assets
+     */
     public Scene(String scenePath, AssetManager assets) {
         // Get name and number
         mAssetPath = "scenes/" + scenePath;
@@ -34,16 +41,24 @@ public class Scene {
         try {
             String[] sceneContents = assets.list(mAssetPath);
             for (String file : sceneContents) {
-                String txt = SceneLab.getStringFromFile(mAssetPath + "/" + file, assets);
+                String assetPath = mAssetPath + "/" + file;
                 switch (file) {
-                    case CHALLENGE:
-                        mChallenge = txt;
+                    case SCENE_TEXTS:
+                        // Create slides from each of the slides
+                        mSlides = new ArrayList<>();
+                        String[] slides = assets.list(assetPath);
+                        for (String slidePath : slides) {
+                            Slide slide = new Slide(assetPath + "/" + slidePath, slidePath, assets);
+                            mSlides.add(slide);
+                        }
                         break;
-                    case SCENE_TEXT:
-                        mContents = txt;
+                    case CHALLENGE:
+                        // Get challenge
+                        mChallenge = SceneLab.getStringFromFile(assetPath, assets);
                         break;
                     case PRAYER_TIP:
-                        mPrayerTips = txt;
+                        // Get prayer tips
+                        mPrayerTips = SceneLab.getStringFromFile(assetPath, assets);
                         break;
                 }
             }
@@ -51,14 +66,6 @@ public class Scene {
             // Log exception
             Log.e(TAG, "Error fetching scene contents: " + scenePath);
         }
-    }
-
-    public Scene(int number) {
-        mSceneNumber = number;
-        mSceneName = "Scene " + number;
-        mContents = "This is the description for scene " + number;
-        mChallenge = "This is the challenge for scene " + number;
-        mPrayerTips = "These are the prayer tips for scene " + number;
     }
 
     public String getAssetPath() {
@@ -71,10 +78,6 @@ public class Scene {
 
     public int getSceneNumber() {
         return mSceneNumber;
-    }
-
-    public String getContents() {
-        return mContents;
     }
 
     public String getSceneName() {
@@ -95,5 +98,13 @@ public class Scene {
 
     public boolean isUnlocked() {
         return mIsUnlocked;
+    }
+
+    public List<Slide> getSlides() {
+        return mSlides;
+    }
+
+    public void setSlides(List<Slide> slides) {
+        mSlides = slides;
     }
 }

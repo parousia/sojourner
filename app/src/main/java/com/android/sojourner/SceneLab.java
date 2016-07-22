@@ -61,11 +61,11 @@ public class SceneLab {
                     return new Scene(s, mAssetManager);
                 }
             }
-        } catch (IOException e) { // DO nothing
+        } catch (IOException e) {
+            // Scene does not exist
+            Log.e(TAG, "No Scene found: " + number);
         }
 
-        // Scene does not exist
-        Log.e(TAG, "No Scene found: " + number);
         return null;
     }
 
