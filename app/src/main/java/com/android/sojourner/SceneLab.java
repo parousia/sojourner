@@ -79,6 +79,7 @@ public class SceneLab {
 
             while ((str = in.readLine()) != null) {
                 builder.append(str);
+                builder.append("\n\n");
             }
             str = builder.toString();
             in.close();

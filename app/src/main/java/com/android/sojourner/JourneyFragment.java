@@ -1,5 +1,6 @@
 package com.android.sojourner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -45,7 +46,7 @@ public class JourneyFragment extends Fragment {
         mChallengeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Open up a detailed challenge view
             }
         });
 
@@ -59,7 +60,9 @@ public class JourneyFragment extends Fragment {
         mStoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Open the slides
+                Intent i = SlideActivity.newIntent(getActivity(), mCurrentScene.getSceneNumber());
+                startActivity(i);
             }
         });
 
