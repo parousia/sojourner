@@ -20,17 +20,26 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.Sl
     private Scene mScene;
     private List<Slide> mSlides;
 
+    /******
+     * Static method for new intent
+     *******/
     public static Intent newIntent(Context context, int sceneNum) {
         Intent i = new Intent(context, SlideActivity.class);
         i.putExtra(EXTRA_SCENE_NUMBER, sceneNum);
         return i;
     }
 
+    /******
+     * Interface Methods
+     ******/
     @Override
     public Slide getSlideFromContainer(int slideNum) {
         return mSlides.get(slideNum);
     }
 
+    /******
+     * Public Activity methods
+     ******/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

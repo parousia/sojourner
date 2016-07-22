@@ -19,7 +19,7 @@ public class SharedPrefs {
 
     public static Scene getCurrentScene(Context context) {
         int curNum = PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(PREF_SCENE_NUM, 1);
+                .getInt(PREF_SCENE_NUM, 0);
         return SceneLab.get(context).getScene(curNum);
     }
 }

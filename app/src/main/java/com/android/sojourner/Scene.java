@@ -27,8 +27,6 @@ public class Scene {
 
     /***
      * Constructor for Scene from asset path
-     * @param scenePath
-     * @param assets
      */
     public Scene(String scenePath, AssetManager assets) {
         // Get name and number
