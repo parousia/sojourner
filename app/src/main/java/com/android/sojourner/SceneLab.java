@@ -70,7 +70,7 @@ public class SceneLab {
     }
 
     /** Static helper methods **/
-    public static String getStringFromFile(String filePath, AssetManager assetManager) {
+    public static String getStringFromFile(String filePath, boolean doubleSpace, AssetManager assetManager) {
         String str = "";
         try {
             StringBuilder builder = new StringBuilder();
@@ -79,7 +79,9 @@ public class SceneLab {
 
             while ((str = in.readLine()) != null) {
                 builder.append(str);
-                builder.append("\n\n");
+                // Add a new line after every line break
+                if (doubleSpace)
+                    builder.append("\n\n");
             }
             str = builder.toString();
             in.close();

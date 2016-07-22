@@ -15,7 +15,7 @@ public class Slide {
         String[] titles = title.split("-");
         mTitle = titles[0];
         mSubtitle = titles[1];
-        mContent = SceneLab.getStringFromFile(filePath, assets);
+        mContent = SceneLab.getStringFromFile(filePath, false, assets);
     }
 
     public String getContent() {

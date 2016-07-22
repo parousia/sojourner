@@ -66,4 +66,11 @@ public class SlideActivity extends AppCompatActivity implements SlideFragment.Sl
             }
         });
     }
+
+    /******
+     * Private helper methods
+     ******/
+    private void setSlide(int slideNum) {
+        mViewPager.setCurrentItem(slideNum);
+    }
 }
