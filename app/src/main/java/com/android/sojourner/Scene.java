@@ -52,11 +52,11 @@ public class Scene {
                         break;
                     case CHALLENGE:
                         // Get challenge
-                        mChallenge = SceneLab.getStringFromFile(assetPath, assets);
+                        mChallenge = SceneLab.getStringFromFile(assetPath, true, assets);
                         break;
                     case PRAYER_TIP:
                         // Get prayer tips
-                        mPrayerTips = SceneLab.getStringFromFile(assetPath, assets);
+                        mPrayerTips = SceneLab.getStringFromFile(assetPath, true, assets);
                         break;
                 }
             }
