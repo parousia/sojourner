@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Created by Joseph on 7/22/16.
@@ -16,6 +17,9 @@ public class SlideFragment extends Fragment {
 
     private SlideContainer mSlideContainer;
     private Slide mSlide;
+    private TextView mTitleTextView;
+    private TextView mSubtitleTextView;
+    private TextView mContentTextView;
 
     /********
      * Interface to get slides from scene
@@ -60,6 +64,14 @@ public class SlideFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_slide, container, false);
 
+        mTitleTextView = (TextView) v.findViewById(R.id.slide_title);
+        mTitleTextView.setText(mSlide.getTitle());
+
+        mSubtitleTextView = (TextView) v.findViewById(R.id.slide_subtitle);
+        mSubtitleTextView.setText(mSlide.getSubtitle());
+
+        mContentTextView = (TextView) v.findViewById(R.id.slide_content);
+        mContentTextView.setText(mSlide.getContent());
 
         return v;
     }
