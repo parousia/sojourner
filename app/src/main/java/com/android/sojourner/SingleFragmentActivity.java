@@ -36,7 +36,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             //R.id.fragment_container is a container view ID for (1)telling fragment manager
             //where in activity's view the fragment's view should appear & (2)unique id for fragment
             //in fragment manager's list (retrieve CrimeFragment from FragmentManager by container view id)
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            fm.beginTransaction()
+                    .add(R.id.fragment_container, fragment)
+                    .commit();
         }
     }
 }
