@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".SlideActivity"
             android:parentActivityName=".MainActivity"/>
+        <activity android:name=".AllTreksActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
