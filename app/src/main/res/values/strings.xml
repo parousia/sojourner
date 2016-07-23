@@ -5,4 +5,7 @@
     <string name="checkbox_done">Done</string>
     <string name="journey_scene_title">Story</string>
     <string name="challenge_title">Challenge</string>
+    <string name="intro_title">Welcome Sojourner!</string>
+    <string name="intro_description">Sojourner is an app for Christians to improve his or her prayer life.</string>
+    <string name="intro_button">Do you ever feel...</string>
 </resources>
