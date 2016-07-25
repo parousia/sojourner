@@ -1,5 +1,6 @@
 package com.android.sojourner;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -15,7 +16,8 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements DrawerAdapter.OnItemSelectListener {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private TabPagerAdapter mPagerAdapter;
@@ -64,13 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerRecyclerView = (RecyclerView) findViewById(R.id.main_activity_drawer_recyclerView);
         mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new DrawerAdapter();
-        mAdapter.setOnItemClickListener(new DrawerAdapter.OnItemSelectListener() {
-            @Override
-            public void onItemSelected(View v, int position) {
-                //clicking items does stuff
-                Toast.makeText(MainActivity.this, "Selected " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+        mAdapter.setOnItemClickListener(this);
         mDrawerRecyclerView.setAdapter(mAdapter);
 
         // Find TabLayout
@@ -88,4 +84,29 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
         mPagerAdapter.setTabIcons();
     }
+
+    @Override
+    public void onDrawerItemSelected(View v, int position) {
+        switch (position) {
+            // Header selected
+            case 0:
+                break;
+            // All Treks Selected
+            case 1:
+                // Open up All Treks Activity
+                Intent i = new Intent(MainActivity.this, AllTreksActivity.class);
+                startActivity(i);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /*****
+     * Private Helper Methods
+     *****/
+    private void onNavDrawerItemSelected() {
+
+    }
+
 }

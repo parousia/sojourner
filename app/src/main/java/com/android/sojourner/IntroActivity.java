@@ -3,11 +3,12 @@ package com.android.sojourner;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by jlian on 7/22/2016.
  */
-public class IntroActivity extends ActionBarActivity {
+public class IntroActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
@@ -23,7 +24,7 @@ public class IntroActivity extends ActionBarActivity {
         mViewPager.setAdapter(new IntroAdapter(getSupportFragmentManager()));
 
         // Set a PageTransformer
-        mViewPager.setPageTransformer(false, new IntroPageTransformer());
+        //mViewPager.setPageTransformer(false, new IntroPageTransformer());
     }
 
 }

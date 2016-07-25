@@ -21,7 +21,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
 
     // Interface for item clicks
     public interface OnItemSelectListener {
-        void onItemSelected(View v, int position);
+        void onDrawerItemSelected(View v, int position);
     }
 
     public void setOnItemClickListener(OnItemSelectListener listener) {
@@ -92,8 +92,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
     }
 
     /** Private ViewHolder Class **/
-    protected class DrawerViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    protected class DrawerViewHolder extends RecyclerView.ViewHolder {
         TextView mItemName;
         TextView mHeaderText;
         ImageView mIconImage;
@@ -113,7 +112,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
             }
 
             // Set the itemClickListener
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Callback to hosting activity
+                    mListener.onDrawerItemSelected(v, getAdapterPosition());
+                }
+            });
         }
 
         public void bindViewHolder(int position) {
@@ -127,11 +132,6 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
                 mItemName.setText(drawerItem.getmTitle());
                 mIconImage.setImageResource(drawerItem.getmIcon());
             }
-        }
-
-        @Override
-        public void onClick(View view) {
-            mListener.onItemSelected(view, getAdapterPosition());
         }
     }
 }
