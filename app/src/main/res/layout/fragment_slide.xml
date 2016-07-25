@@ -13,7 +13,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         android:textAlignment="center"
-        android:text="HELLO WORLD!"/>
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
         android:id="@+id/slide_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
-        android:text="blahblahalkfjpworigpiajrgpiaprogiaporgpaiergpoiaejgpoiaegpaiorpaoiejgrpaoeirjgpaoiegjpaoeirjgpaoirjfpaoirjfpaoirjfpaoi"/>
+        android:textSize="20sp"
+        android:textAlignment="center"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -34,7 +36,6 @@
         android:id="@+id/slide_subtitle"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:textAlignment="center"
-        android:text="Jonathan Liang"/>
+        android:textAlignment="center" />
 
     </LinearLayout>
