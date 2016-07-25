@@ -5,51 +5,93 @@
              android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/intro_title"
+        android:id="@+id/intro_question_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="@string/intro_title"
+        android:text="@string/intro_question_1"
+        android:textStyle="italic"
         android:textColor="@android:color/white"
-        android:textSize="28sp"/>
+        android:textSize="18sp"/>
 
-    <ImageView
-        android:id="@+id/tv"
+    <TextView
+        android:id="@+id/intro_question_2"
+        android:layout_below="@id/intro_question_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_journey_normal"/>
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:maxEms="18"
+        android:textStyle="italic"
+        android:text="@string/intro_question_2"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/intro_question_3"
+        android:layout_below="@id/intro_question_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:maxEms="18"
+        android:textStyle="italic"
+        android:text="@string/intro_question_3"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/intro_question_4"
+        android:layout_below="@id/intro_question_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:maxEms="18"
+        android:textStyle="italic"
+        android:text="@string/intro_question_4"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/intro_description_2"
+        android:layout_below="@id/intro_question_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:maxEms="18"
+        android:textStyle="bold"
+        android:text="@string/intro_description_2"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/intro_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="70dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:backgroundTint="@color/light_gray"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="Begin your Journey!"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
         android:layout_alignParentBottom="true"/>
-
-    <TextView
-        android:id="@+id/intro_description"
-        android:layout_above="@id/intro_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:gravity="center"
-        android:maxEms="18"
-        android:text="@string/intro_description"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
 
 </RelativeLayout>

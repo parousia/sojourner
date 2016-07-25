@@ -3,7 +3,7 @@
     android:id="@+id/intro_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/colorAccent">
+    >
 
     <TextView
         android:id="@+id/intro_title"
@@ -15,7 +15,7 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/intro_title"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="50sp"
         android:layout_alignParentTop="true" />
@@ -31,7 +31,7 @@
         android:gravity="center"
         android:maxEms="18"
         android:text="@string/intro_description"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:textStyle="italic"
         android:textSize="20sp"
         android:layout_below="@id/intro_title"/>
@@ -54,7 +54,7 @@
         android:layout_marginRight="32dp"
         android:gravity="center"
         android:text="@string/intro_button"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
         android:layout_alignParentBottom="true"/>
 

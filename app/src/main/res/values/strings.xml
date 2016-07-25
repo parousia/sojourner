@@ -8,4 +8,9 @@
     <string name="intro_title">Welcome Sojourner!</string>
     <string name="intro_description">Sojourner is an app for Christians to improve his or her prayer life.</string>
     <string name="intro_button">Do you ever feel...</string>
+    <string name="intro_question_1">...why you should pray to begin with?</string>
+    <string name="intro_question_2">...like praying is just talking to yourself?</string>
+    <string name="intro_question_3">...that prayer does not seem to do anything?</string>
+    <string name="intro_question_4">...like you do not know how to pray?</string>
+    <string name="intro_description_2">Take a leap of faith and start answering your questions</string>
 </resources>
